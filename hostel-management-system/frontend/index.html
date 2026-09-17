@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hostel Portal</title>
+</head>
+<body>
+<script>
+  const token = localStorage.getItem('hostel_token');
+  window.location.href = token ? 'dashboard.html' : 'login.html';
+</script>
+</body>
+</html>

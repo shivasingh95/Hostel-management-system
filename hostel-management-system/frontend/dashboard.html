@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hostel Portal Dashboard — View your room allocation and available rooms.">
+  <title>Dashboard — Hostel Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">🏠 Hostel Portal</div>
+  <nav>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="complaints.html">Complaints</a>
+    <span id="admin-nav-link" style="display:none"><a href="admin.html">Admin</a></span>
+  </nav>
+  <div class="nav-right">
+    <div class="student-badge">
+      <div class="student-avatar" id="student-avatar">?</div>
+      <span class="student-name" id="student-name-label"></span>
+    </div>
+    <button class="btn-logout" onclick="logout()">Sign out</button>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h1>Your Dashboard</h1>
+    <p class="subtitle">Overview of your room allocation and hostel availability</p>
+  </div>
+
+  <!-- Stats Row (populated by JS) -->
+  <div class="stats-row" id="stats-row">
+    <div class="stat-chip gold skeleton" id="stat-room" style="min-height:80px"></div>
+    <div class="stat-chip teal skeleton" id="stat-hostel" style="min-height:80px"></div>
+    <div class="stat-chip purple skeleton" id="stat-since" style="min-height:80px"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2><div class="card-icon gold">🛏</div>Current Allocation</h2>
+    </div>
+    <div id="allocation-content">
+      <div class="skeleton skeleton-line w-60"></div>
+      <div class="skeleton skeleton-line w-40"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2><div class="card-icon teal">🏢</div>Available Rooms</h2>
+      <span id="rooms-count" style="font-size:13px;color:var(--text-muted)"></span>
+    </div>
+    <div id="rooms-content">
+      <div class="room-grid">
+        <div class="skeleton skeleton-box"></div>
+        <div class="skeleton skeleton-box"></div>
+        <div class="skeleton skeleton-box"></div>
+        <div class="skeleton skeleton-box"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

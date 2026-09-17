@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hostel Portal Admin — Manage rooms, allocations, and complaints.">
+  <title>Admin Panel — Hostel Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">🏠 Hostel Portal</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="complaints.html">Complaints</a>
+    <a href="admin.html" class="active">Admin</a>
+  </nav>
+  <div class="nav-right">
+    <div class="student-badge">
+      <div class="student-avatar" id="student-avatar">?</div>
+      <span class="student-name" id="student-name-label"></span>
+    </div>
+    <button class="btn-logout" onclick="logout()">Sign out</button>
+  </div>
+</div>
+
+<div class="page page-wide">
+  <div class="page-header">
+    <h1>⚙ Admin Panel</h1>
+    <p class="subtitle">Manage rooms, allocations, and complaints across the hostel</p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs" role="tablist">
+    <button class="admin-tab-btn active" id="tab-rooms"       onclick="switchTab('rooms')"       role="tab">🏢 Rooms</button>
+    <button class="admin-tab-btn"        id="tab-allocations" onclick="switchTab('allocations')" role="tab">🛏 Allocations</button>
+    <button class="admin-tab-btn"        id="tab-complaints"  onclick="switchTab('complaints')"  role="tab">📋 Complaints</button>
+    <button class="admin-tab-btn"        id="tab-allocate"    onclick="switchTab('allocate')"    role="tab">➕ New Allocation</button>
+  </div>
+
+  <!-- Rooms Panel -->
+  <div class="admin-tab-panel active" id="panel-rooms">
+    <div class="card">
+      <div class="card-header">
+        <h2><div class="card-icon teal">🏢</div>All Rooms</h2>
+        <span id="rooms-count" style="font-size:13px;color:var(--text-muted)"></span>
+      </div>
+      <div id="rooms-table-wrap">
+        <div class="skeleton skeleton-box" style="height:120px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Allocations Panel -->
+  <div class="admin-tab-panel" id="panel-allocations">
+    <div class="card">
+      <div class="card-header">
+        <h2><div class="card-icon gold">🛏</div>All Allocations</h2>
+      </div>
+      <div class="field">
+        <label for="alloc-student-id">Student ID (look up allocations)</label>
+        <div style="display:flex;gap:10px">
+          <input type="number" id="alloc-student-id" placeholder="Enter student ID…" style="flex:1;padding:12px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:14px;outline:none">
+          <button class="btn btn-secondary" onclick="loadStudentAllocations()">Look up</button>
+        </div>
+      </div>
+      <div id="allocations-table-wrap">
+        <div class="empty-state"><div class="empty-icon">🔍</div><p>Enter a student ID above to view their allocations.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complaints Panel -->
+  <div class="admin-tab-panel" id="panel-complaints">
+    <div class="card">
+      <div class="card-header">
+        <h2><div class="card-icon purple">📋</div>Room Complaints</h2>
+      </div>
+      <div class="field">
+        <label for="complaint-room-id">Room ID (view complaints for a room)</label>
+        <div style="display:flex;gap:10px">
+          <input type="number" id="complaint-room-id" placeholder="Enter room ID…" style="flex:1;padding:12px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:var(--radius);color:var(--text-primary);font-family:inherit;font-size:14px;outline:none">
+          <button class="btn btn-secondary" onclick="loadRoomComplaints()">Look up</button>
+        </div>
+      </div>
+      <div id="complaints-table-wrap">
+        <div class="empty-state"><div class="empty-icon">🔍</div><p>Enter a room ID above to view its complaints.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Allocation Panel -->
+  <div class="admin-tab-panel" id="panel-allocate">
+    <div class="card">
+      <div class="card-header">
+        <h2><div class="card-icon gold">➕</div>Allocate a Room</h2>
+      </div>
+      <div id="allocate-error" class="error-msg"></div>
+      <form id="allocate-form">
+        <div class="field">
+          <label for="a-student-id">Student ID</label>
+          <input type="number" id="a-student-id" required placeholder="e.g. 42">
+        </div>
+        <div class="field">
+          <label for="a-room-id">Room ID</label>
+          <input type="number" id="a-room-id" required placeholder="e.g. 7">
+        </div>
+        <button type="submit" class="btn btn-primary" id="allocate-btn">
+          <div class="spinner"></div>
+          <span class="btn-label">Allocate Room</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

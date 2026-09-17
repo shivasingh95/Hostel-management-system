@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hostel Portal — Sign in to manage your room allocation and maintenance requests.">
+  <title>Sign in — Hostel Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <!-- Animated background blobs -->
+  <div class="auth-blob auth-blob-1"></div>
+  <div class="auth-blob auth-blob-2"></div>
+  <div class="auth-blob auth-blob-3"></div>
+
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">🏠</div>
+      <div class="auth-brand">Hostel Portal</div>
+    </div>
+    <p class="auth-tagline">Room allocation and maintenance, in one place.</p>
+
+    <div class="auth-toggle" id="auth-toggle">
+      <div class="auth-toggle-slider"></div>
+      <button id="tab-login" class="active" onclick="showTab('login')">Sign in</button>
+      <button id="tab-register" onclick="showTab('register')">Register</button>
+    </div>
+
+    <div id="error-box" class="error-msg"></div>
+
+    <!-- Login Form -->
+    <form id="login-form">
+      <div class="field">
+        <label for="login-email">Email address</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">✉</span>
+          <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">🔒</span>
+          <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+          <button type="button" class="toggle-pw" onclick="togglePw('login-password', this)" aria-label="Toggle password visibility">👁</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="login-submit">
+        <div class="spinner"></div>
+        <span class="btn-label">Sign in</span>
+      </button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="register-form" style="display:none">
+      <div class="field">
+        <label for="reg-name">Full name</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">👤</span>
+          <input type="text" id="reg-name" placeholder="Shiva Raghuwanshi" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="reg-email">Email address</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">✉</span>
+          <input type="email" id="reg-email" placeholder="you@example.com" required autocomplete="email">
+        </div>
+      </div>
+      <div class="field">
+        <label for="reg-regno">Registration number</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">🎓</span>
+          <input type="text" id="reg-regno" placeholder="e.g. 2023CS001" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="reg-phone">Phone (optional)</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">📱</span>
+          <input type="tel" id="reg-phone" placeholder="+91 98765 43210">
+        </div>
+      </div>
+      <div class="field">
+        <label for="reg-password">Create password</label>
+        <div class="field-icon-wrap">
+          <span class="field-icon">🔒</span>
+          <input type="password" id="reg-password" placeholder="Min. 8 characters" required autocomplete="new-password">
+          <button type="button" class="toggle-pw" onclick="togglePw('reg-password', this)" aria-label="Toggle password visibility">👁</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="register-submit">
+        <div class="spinner"></div>
+        <span class="btn-label">Create account</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

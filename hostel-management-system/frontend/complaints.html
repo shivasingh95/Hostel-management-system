@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hostel Portal Complaints — Report maintenance issues and track their resolution.">
+  <title>Complaints — Hostel Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">🏠 Hostel Portal</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="complaints.html" class="active">Complaints</a>
+    <span id="admin-nav-link" style="display:none"><a href="admin.html">Admin</a></span>
+  </nav>
+  <div class="nav-right">
+    <div class="student-badge">
+      <div class="student-avatar" id="student-avatar">?</div>
+      <span class="student-name" id="student-name-label"></span>
+    </div>
+    <button class="btn-logout" onclick="logout()">Sign out</button>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h1>Complaints</h1>
+    <p class="subtitle">Report a maintenance issue in your room and track its status</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2><div class="card-icon gold">📝</div>Raise a Complaint</h2>
+    </div>
+
+    <div id="no-room-msg" class="empty-state" style="display:none">
+      <div class="empty-icon">🏠</div>
+      <p>You don't have a room allocated yet.<br>Once the hostel admin assigns you a room, you can raise complaints here.</p>
+    </div>
+
+    <div id="error-box" class="error-msg"></div>
+
+    <form id="complaint-form" style="display:none">
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category" required>
+          <option value="ELECTRICAL">⚡ Electrical</option>
+          <option value="PLUMBING">🚿 Plumbing</option>
+          <option value="CLEANING">🧹 Cleaning</option>
+          <option value="FURNITURE">🪑 Furniture</option>
+          <option value="OTHER">📋 Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="description">Describe the issue</label>
+        <textarea id="description" required placeholder="e.g. Ceiling fan not working, has been off for two days"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit-btn">
+        <div class="spinner"></div>
+        <span class="btn-label">Submit complaint</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2><div class="card-icon purple">📋</div>Your Complaints</h2>
+      <span id="complaints-count" style="font-size:13px;color:var(--text-muted)"></span>
+    </div>
+    <div id="complaints-list">
+      <div style="padding: 8px 0">
+        <div class="skeleton skeleton-line w-80"></div>
+        <div class="skeleton skeleton-line w-60"></div>
+        <div class="skeleton skeleton-box" style="height:60px;margin-top:4px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="js/api.js"></script>
+<script src="js/complaints.js"></script>
+</body>
+</html>
